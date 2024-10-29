@@ -34,10 +34,6 @@ export default function Header() {
 
   return (
     <Navbar maxWidth="full" shouldHideOnScroll className="border-b">
-      {/* <NavbarBrand>
-        <Icon name="mountain" className="h-6 w-6" />
-        <p className="ml-2 font-bold text-inherit">STORAGE</p>
-      </NavbarBrand> */}
       <NavbarContent justify="end">
         <NavbarItem>
           <ThemeSwitcher />
@@ -47,7 +43,7 @@ export default function Header() {
             <DropdownTrigger>
               <User
                 name={userInfo?.fullName}
-                description="Software Engineer"
+                description="Account name"
                 avatarProps={{
                   size: 'sm',
                   src: 'https://i.pravatar.cc/150?u=a04258114e29026702d',

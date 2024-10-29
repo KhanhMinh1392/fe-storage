@@ -1,13 +1,34 @@
 import SignIn from '@/components/sign-in';
 import { Button } from '@nextui-org/button';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/navbar';
-import { PropsWithChildren, Suspense } from 'react';
+import Link from 'next/link';
+import { PropsWithChildren } from 'react';
 import Icon from '../icon';
 import { ThemeSwitcher } from '../theme-switcher';
-import React from 'react';
-import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import ListComponent from '../list';
+
+const routes = [
+  {
+    title: 'Overview',
+    href: '/overview',
+  },
+  {
+    title: 'Features',
+    href: '/features',
+  },
+  {
+    title: 'Customers',
+    href: '/customers',
+  },
+  {
+    title: 'Pricing',
+    href: '/pricing',
+  },
+];
 
 export default function PublicLayout({ children }: PropsWithChildren) {
+  const pathname = usePathname();
   return (
     <>
       <Navbar className="[&>header]:max-w-[1280px]" shouldHideOnScroll>
@@ -17,14 +38,14 @@ export default function PublicLayout({ children }: PropsWithChildren) {
             <p className="ml-2 text-xl font-bold text-inherit">STORAGE</p>
           </NavbarBrand>
           <NavbarContent className="hidden gap-8 md:flex">
-            <NavbarItem as={Link} href={'/overview'} isActive>
-              Overview
-            </NavbarItem>
-            <NavbarItem as={Link} href={'/features'}>
-              Features
-            </NavbarItem>
-            <NavbarItem>Customers</NavbarItem>
-            <NavbarItem>Pricing</NavbarItem>
+            <ListComponent
+              data={routes}
+              renderItems={(item) => (
+                <NavbarItem key={item.href} as={Link} href={item.href} isActive={pathname === item.href}>
+                  {item.title}
+                </NavbarItem>
+              )}
+            />
           </NavbarContent>
         </NavbarContent>
         <NavbarContent justify="end" className="hidden sm:flex">
@@ -35,7 +56,7 @@ export default function PublicLayout({ children }: PropsWithChildren) {
             <SignIn />
           </NavbarItem>
           <NavbarItem>
-            <Button variant="bordered">Try it</Button>
+            <Button color="primary">Create an account</Button>
           </NavbarItem>
         </NavbarContent>
       </Navbar>
