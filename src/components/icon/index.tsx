@@ -1,4 +1,4 @@
-import { LucideProps } from 'lucide-react';
+import { LoaderCircle, LucideProps } from 'lucide-react';
 import dynamicIconImports from 'lucide-react/dynamicIconImports';
 import dynamic from 'next/dynamic';
 
@@ -39,7 +39,7 @@ interface IconProps extends LucideProps {
 const Icon = ({ name, ...props }: IconProps) => {
   const LucideIcon = dynamic(dynamicIconImports[name], {
     ssr: false,
-    loading: () => <div className="size-6 rounded-full bg-gray-500"></div>,
+    loading: () => <LoaderCircle className="size-6 animate-spin" />,
   });
 
   return <LucideIcon {...props} />;
