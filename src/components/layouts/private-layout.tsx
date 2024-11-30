@@ -1,5 +1,5 @@
 import { Progress } from '@nextui-org/progress';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, Suspense } from 'react';
 import Header from '../header';
 import Icon from '../icon';
 import Sidebar from '../sidebar';
