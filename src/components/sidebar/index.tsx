@@ -40,7 +40,7 @@ export default function Sidebar() {
             <Link
               href={item.href}
               className={cn(
-                'flex items-center gap-2.5 rounded-md px-2 py-2 font-medium',
+                'flex items-center gap-2.5 rounded-md px-2 py-2 font-normal',
                 pathname === item.href && 'bg-gray-600',
               )}
             >

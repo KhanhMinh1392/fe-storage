@@ -5,17 +5,15 @@ import {
   DropdownMenu,
   DropdownTrigger,
   Navbar,
-  NavbarBrand,
   NavbarContent,
   NavbarItem,
   User,
 } from '@nextui-org/react';
-import Icon from '../icon';
-import { ThemeSwitcher } from '../theme-switcher';
-import { setCookie } from 'cookies-next';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
+import { setCookie } from 'cookies-next';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { ThemeSwitcher } from '../theme-switcher';
 import { getAccountInfo } from '@/services/account';
 
 export default function Header() {

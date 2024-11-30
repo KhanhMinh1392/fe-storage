@@ -69,9 +69,9 @@ export default function SignIn() {
         reset();
         onClose();
         setCookie('accessToken', data.accessToken);
-        toast.success('Sign in successfully');
         router.push('/home');
         router.refresh();
+        toast.success('Sign in successfully');
       },
       onError: () => {
         toast.error('Sign in failure');

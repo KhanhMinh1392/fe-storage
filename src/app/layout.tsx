@@ -5,7 +5,6 @@ import { Open_Sans } from 'next/font/google';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './globals.css';
-import { AuthLayout } from '@/components/layouts';
 
 export const metadata: Metadata = {
   title: 'Storage',
@@ -15,6 +14,7 @@ export const metadata: Metadata = {
 const openSans = Open_Sans({
   subsets: ['latin'],
   display: 'swap',
+  weight: ['300', '400', '500', '600', '700', '800'],
 });
 
 export default function RootLayout({

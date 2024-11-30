@@ -2,11 +2,11 @@ import SignIn from '@/components/sign-in';
 import { Button } from '@nextui-org/button';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/navbar';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { PropsWithChildren } from 'react';
 import Icon from '../icon';
-import { ThemeSwitcher } from '../theme-switcher';
-import { usePathname } from 'next/navigation';
 import ListComponent from '../list';
+import { ThemeSwitcher } from '../theme-switcher';
 
 const routes = [
   {
