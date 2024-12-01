@@ -1,3 +1,4 @@
+import { API_PATH } from '@/constants/apis';
 import axiosInstance from '@/lib/axiosIntance';
 import { IRes } from '@/types/common';
 
@@ -14,7 +15,7 @@ export interface IDrive {
   size: string;
 }
 
-export const getDrives = async (): Promise<IRes<IDrive>> => {
-  const url = '/drives';
-  return await axiosInstance.get(url);
+export const getDrives = async (id?: string): Promise<IRes<IDrive>> => {
+  const url = API_PATH.DRIVES;
+  return await axiosInstance.get(url, { params: { parent_id: id } });
 };

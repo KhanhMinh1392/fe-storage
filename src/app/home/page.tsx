@@ -1,10 +1,16 @@
 'use client';
-import Icon from '@/components/icon';
+
+import { MButton } from '@/components/button';
 import ListComponent from '@/components/list';
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { CirclePlus, EllipsisVertical, FilePlus, Folder, FolderOpen, FolderPlus } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useDriveColumns, useGetDrives } from './hooks';
 
 export default function Home() {
+  const router = useRouter();
+
   const { data: drives } = useGetDrives();
   const columns = useDriveColumns();
 
@@ -14,8 +20,33 @@ export default function Home() {
     getCoreRowModel: getCoreRowModel(),
   });
 
+  const handleOpenFolder = (folderId: number) => {
+    router.push(`drive/folders/${folderId}`);
+  };
+
   return (
     <>
+      <Dropdown placement="bottom-start">
+        <DropdownTrigger>
+          <MButton color="primary" size="md" className="mb-4" startContent={<CirclePlus />}>
+            New
+          </MButton>
+        </DropdownTrigger>
+        <DropdownMenu variant="flat" aria-label="Dropdown menu with icons">
+          <DropdownItem
+            showDivider
+            key="new-folder"
+            shortcut="⌘N"
+            startContent={<FolderPlus size={20} />}
+            className="mr-4"
+          >
+            Create folder
+          </DropdownItem>
+          <DropdownItem key="new-file" shortcut="⌘E" startContent={<FilePlus size={20} />} className="mr-4">
+            Create file
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
       <h1 className="text-base font-medium text-gray-800">Recommend folder</h1>
       <div className="mt-4 grid grid-cols-4 gap-4">
         <ListComponent
@@ -26,13 +57,26 @@ export default function Home() {
               className="col-span-1 flex items-center justify-between gap-4 rounded-xl bg-gray-200 px-3 py-2"
             >
               <div className="flex items-center gap-4">
-                <Icon name="folder" />
+                <Folder />
                 <div>
                   <p className="text-sm font-medium">{item.name}</p>
                   <span className="text-sm font-normal text-gray-500">On my drive</span>
                 </div>
               </div>
-              <Icon name="ellipsis-vertical" size={20} />
+              <Dropdown>
+                <DropdownTrigger>
+                  <EllipsisVertical size={20} />
+                </DropdownTrigger>
+                <DropdownMenu variant="faded" aria-label="Dropdown menu with icons">
+                  <DropdownItem
+                    key="open"
+                    startContent={<FolderOpen size={20} />}
+                    onClick={() => handleOpenFolder(item.id)}
+                  >
+                    Open folder
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
             </div>
           )}
         />

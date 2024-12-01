@@ -34,7 +34,9 @@ export default function PrivateLayout({ children }: PropsWithChildren) {
       </aside>
       <div className="mt-1 flex-1">
         <Header />
-        <main className="p-5">{children}</main>
+        <main className="h-full p-5">
+          <Suspense fallback="Loading...">{children}</Suspense>
+        </main>
       </div>
     </div>
   );

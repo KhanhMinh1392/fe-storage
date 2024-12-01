@@ -1,2 +1,2 @@
 export * from './useGetDrives';
-export * from './useDriveColumns';
+export * from './useColumns';
